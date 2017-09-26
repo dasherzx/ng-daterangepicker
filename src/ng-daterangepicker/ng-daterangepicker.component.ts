@@ -92,17 +92,13 @@ export class NgDateRangePickerComponent implements ControlValueAccessor, OnInit,
   ngOnInit() {
     this.opened = false;
     this.date = dateFns.startOfDay(new Date());
-    console.log(this.options, this.defaultOptions);
     this.options = this.options || this.defaultOptions;
-    console.log(this.options);
     
     this.initNames();
     if(!this.options.defaultRange || this.options.defaultRange === ""){
-      console.log("No default range", this.defaultRange);
       this.selectRange(this.options.range);
     }
     else{
-      console.log("defaultRange");
       this.selectRange("custom");
     }
   }
@@ -186,20 +182,17 @@ export class NgDateRangePickerComponent implements ControlValueAccessor, OnInit,
       this.dateTo = selectedDate;
       this.opened = 'from';
     }
-console.log("A");
     this.generateCalendar();
   }
 
   prevMonth(): void {
     this.date = dateFns.subMonths(this.date, 1);
-    console.log("B");
     
     this.generateCalendar();
   }
 
   nextMonth(): void {
     this.date = dateFns.addMonths(this.date, 1);
-    console.log("C");
     
     this.generateCalendar();
   }
@@ -236,15 +229,12 @@ console.log("A");
         break;
        case 'custom':
         let splittedDate = this.options.defaultRange.split('-');
-        today = dateFns.startOfDay("2017/02/09");  
         this.dateFrom =  dateFns.startOfDay(splittedDate[0]);
         this.dateTo =  dateFns.startOfDay(splittedDate[1]);
         break;
     }
 
     this.range = range;
-    console.log(this.range);
-    console.log("d");
     this.generateCalendar();
   }
 
