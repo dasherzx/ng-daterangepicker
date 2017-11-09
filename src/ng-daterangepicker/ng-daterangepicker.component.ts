@@ -133,6 +133,9 @@ export class NgDateRangePickerComponent implements ControlValueAccessor, OnInit,
 
     let prevMonthDayNum = dateFns.getDay(start) - 1;
     let prevMonthDays: IDay[] = [];
+    if(prevMonthDayNum === -1){
+      prevMonthDayNum = 6;
+    }
     if (prevMonthDayNum > 0) {
       prevMonthDays = Array.from(Array(prevMonthDayNum).keys()).map(i => {
         let d = dateFns.subDays(start, prevMonthDayNum - i);
